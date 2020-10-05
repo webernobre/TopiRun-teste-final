@@ -11,7 +11,6 @@ public virtual with sharing class AccountTH extends TriggerHandler {
 
     AccountValidator validator;
 
-    
     AccountEnricher enricher;
 
     public AccountTH () {
@@ -34,13 +33,22 @@ public virtual with sharing class AccountTH extends TriggerHandler {
         validateDocument();
         formatFields();
     }
-    
+
+    override
+    public void afterInsert() {
+        sendAddress();
+    }    
     
     override
     public void beforeUpdate() {
         validateDocument();
         formatFields();
     }
+
+    override
+    public void afterUpdate() {
+        sendAddress();
+    }    
 
     virtual
     public void validateDocument() {
@@ -70,6 +78,20 @@ public virtual with sharing class AccountTH extends TriggerHandler {
         if (filteredAccounts.size()>0){
             this.newAccounts = this.enricher.formatShippingPostalCode(newAccounts, filteredAccounts);
         }
+    }
+
+    virtual
+    public void sendAddress(){
+        List<Account> filteredAccounts = this.filter.filterByChangedAddress(newAccounts, oldAccounts);
+        List<String> accountIds = new List<String>();
+        System.debug(filteredAccounts);
+        if (filteredAccounts.size()>0){
+            for(Account account : filteredAccounts){
+                accountIds.add(account.Id);
+            }
+            PutAccountAddressAsync.sendAddress(accountIds);
+        }
+        
     }
 
 }

@@ -43,6 +43,7 @@ public class AccountTHTest {
 
         account.clear();
         account.add(AccountFixtureFactory.createAccount('Teste 2 ', '64509732007', '04068740000110'));
+        account = repository.findById(account.get(0).Id);
         System.assertEquals('645.097.320-07', account.get(0).Cpf__c);
         System.assertEquals('04.068.740/0001-10', account.get(0).Cnpj__c);
 
@@ -77,6 +78,5 @@ public class AccountTHTest {
         }
 
     }
-    
 
 }

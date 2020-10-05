@@ -8,27 +8,25 @@ public class AccountFilter {
                                             , Map<Id,Account> oldAccounts ) {
 
         List<Account> filteredAccounts = new List<Account> ();
-
         for ( Account account : newAccounts ) {
 
             if ( String.isEmpty(account.Cpf__c) ) {
             continue;
             } 
 
-            if ( oldAccounts == null 
-            || oldAccounts.isEmpty() ) {
-
-            filteredAccounts.add(account);
-            continue;
-
+            if ( oldAccounts == null || oldAccounts.isEmpty() ) {
+                filteredAccounts.add(account);
+                continue;
             }
 
             if ( account.Cpf__c == oldAccounts.get(account.Id).Cpf__c ) {
-            continue;
+                continue;
             }
 
             filteredAccounts.add( account );
+
         }
+
         return filteredAccounts;
     }
     
@@ -45,7 +43,6 @@ public class AccountFilter {
             } 
 
             if ( oldAccounts == null || oldAccounts.isEmpty() ) {
-
                 filteredAccounts.add(account);
                 continue;
             }
@@ -115,6 +112,32 @@ public class AccountFilter {
         }
 
         return filteredAccounts;
+
+    }
+
+    virtual
+    public List<Account> filterByChangedAddress( List<Account> newAccounts
+                                                                , Map<Id,Account> oldAccounts ) {
+        CheckChangedAddress checkAddress = new CheckChangedAddress();
+        List<Account> filteredAccounts = new List<Account> ();
+        for ( Account account : newAccounts ) {
+
+            if ( oldAccounts == null || oldAccounts.isEmpty() ) {
+
+                filteredAccounts.add(account);
+                continue;
+            }
+
+            if ( checkAddress.checkChangedShippingAddress(account, oldAccounts.get(account.Id)) ) {
+                filteredAccounts.add(account);
+                continue;
+            }
+            if ( checkAddress.checkChangedBillingAddress(account, oldAccounts.get(account.Id) ) ) {
+                filteredAccounts.add(account);
+                continue;
+            }
+        }
+        return filteredAccounts; 
 
     }
 }
