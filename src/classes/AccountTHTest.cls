@@ -53,7 +53,6 @@ public class AccountTHTest {
         account = repository.findById(account.get(0).Id);
         System.assertEquals('645.097.320-07', account.get(0).Cpf__c);
         System.assertEquals('04.068.740/0001-10', account.get(0).Cnpj__c);
-        System.debug(account.get(0));
 
         Test.stopTest();
 
