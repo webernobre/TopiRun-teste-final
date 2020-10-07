@@ -14,11 +14,9 @@ public class AccountValidator {
     public List<Account> validateCpf (List<Account> accounts) {
 
         for (Account account : accounts) {
-
             if ( !validator.isCpf( transform.toCpfUnformated(account.Cpf__c))) {
-
-                account.Cpf__c.addError('CPF Invalido');
-            
+                
+                account.Cpf__c.addError('CPF Inválido');
             }     
 
         }
@@ -28,15 +26,12 @@ public class AccountValidator {
     }
 
     public List<Account> validateCnpj (List<Account> accounts) {
-
+        
         for (Account account : accounts) {
 
             if ( !validator.isCnpj( transform.toCnpjUnformated(account.Cnpj__c))) {
-
-                account.Cnpj__c.addError('CNPJ Invalido');
-            
+                account.Cnpj__c.addError('CNPJ Inválido');
             }     
-
         }
 
         return accounts;

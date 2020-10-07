@@ -24,7 +24,6 @@ public class GetTokenGeolocationServices {
 
         Http http = new Http();
         HttpResponse response = http.send(buildRequest(oauthRequest));
-
         if (response.getStatusCode()!=200){
             throw new CalloutException('Falha no login');
         }

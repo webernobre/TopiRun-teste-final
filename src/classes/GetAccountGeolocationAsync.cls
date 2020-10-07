@@ -4,7 +4,7 @@ global class GetAccountGeolocationAsync implements Queueable, Database.AllowsCal
         AccountRepository repository = new AccountRepository();
         GetAccountGeolocationOutboundService service = new GetAccountGeolocationOutboundService();
         List<Account> accounts = repository.findWithGeolocation();
-        service.getGeolocation(accounts);
+        repository.store(service.getGeolocation(accounts));
     }
 
 }

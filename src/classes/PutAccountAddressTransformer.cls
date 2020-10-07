@@ -23,4 +23,23 @@ public class PutAccountAddressTransformer {
         return request;
 
     }
+
+    public Account toAccountFromRequest(PutAccountAddressRequest request){
+        Account account = new Account();
+        account.Id = request.externalId;
+        account.name = request.name;
+        account.BillingStreet = request.billingAddress.street;
+        account.BillingCity = request.billingAddress.city;
+        account.BillingPostalCode = request.billingAddress.zipCode;
+        account.BillingState = request.billingAddress.state;
+        account.BillingCountry = request.billingAddress.country;
+        account.ShippingStreet = request.shippingAddress.street;
+        account.ShippingCity = request.shippingAddress.city;
+        account.ShippingPostalCode = request.shippingAddress.zipCode;
+        account.ShippingState = request.shippingAddress.state;
+        account.ShippingCountry = request.shippingAddress.country;
+
+        return account;
+
+    }
 }

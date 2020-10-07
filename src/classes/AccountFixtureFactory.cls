@@ -12,6 +12,10 @@ public class AccountFixtureFactory {
                             );
     }
 
+    public static Account newAccount(String name)  {
+        return new Account (Name = name);
+    }
+
 
     public static Account createAccount(String name, String cpf, String cnpj)  {
 
@@ -27,5 +31,10 @@ public class AccountFixtureFactory {
     public static List<Account> updateAccount ( List<Account> accounts ) {
         update accounts;
         return accounts;
+    }
+
+    public static Account updateAccount ( Account account ) {
+        update account;
+        return account;
     }
 }

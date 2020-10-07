@@ -84,7 +84,6 @@ public virtual with sharing class AccountTH extends TriggerHandler {
     public void sendAddress(){
         List<Account> filteredAccounts = this.filter.filterByChangedAddress(newAccounts, oldAccounts);
         List<String> accountIds = new List<String>();
-        System.debug(filteredAccounts);
         if (filteredAccounts.size()>0){
             for(Account account : filteredAccounts){
                 accountIds.add(account.Id);

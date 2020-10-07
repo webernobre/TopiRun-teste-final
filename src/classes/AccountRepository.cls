@@ -5,7 +5,8 @@ public virtual class AccountRepository {
 
         return [SELECT Id, Name, 
                         BillingPostalCode, ShippingPostalCode, 
-                        Cnpj__c, Cpf__c 
+                        Cnpj__c, Cpf__c,GeolocationErrorMessage__c,
+                        BillingLatitude, ShippingLatitude
                 FROM Account
                 WHERE Id = :id ];
 
