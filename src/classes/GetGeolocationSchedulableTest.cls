@@ -23,11 +23,11 @@ public class GetGeolocationSchedulableTest {
     }
 
 
-    private static HttpCalloutMock prepareMock(String Id){
+    private static HttpCalloutMock prepareMock(String id){
         Map<String, HttpCalloutMock> endpoints = new Map<String,HttpCalloutMock>();
         String payloadtoken='{"access_token": "00D4W0000048AiQ!AQoAQKgVN6E4i3uIec7RcHjSHfFcknDSEU6D2QKFybFmMrW566TwI1YxcA0aEEeVVsvfAUaUHv5r1PAZzPaFfPQ.XuImOXGt","instance_url": "https://bisso-topirun-20-dev-ed.my.salesforce.com","id": "https://login.salesforce.com/id/00D4W0000048AiQUAU/0054W00000B99edQAB","token_type": "Bearer","issued_at": "1601639269587","signature": "Y4PFBhk+5IhmznVJobqlK6rK8ggSOD41seY4auvYJzA="}';
         String payloadGetLocation='[{"shippingAddress": {"zipCode": "14350-970","street": "Rua Coronel Honório Palma 135","state": "SP","longitude": -47.37663,"latitude": -21.02352,"country": "Brasil","city": "Altinópolis"},"name": "Teste do Bisso","externalId": "' 
-                                    + Id + 
+                                    + id + 
                                     '","billingAddress": {"zipCode": "18770-970","street": "Rua Pedro Dias Batista 70","state": "SP","longitude": -49.24069129319908,"latitude": -22.880184142428277,"country": "Brasil","city": "Águas de Santa Bárbara"}}]';
 
         GetTokenGeolocationServicesTest.GetTokenSuccessHttpMock responseToken = new GetTokenGeolocationServicesTest.GetTokenSuccessHttpMock(payloadtoken);
